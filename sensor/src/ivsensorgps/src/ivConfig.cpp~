@@ -1,0 +1,17 @@
+#include "ivConfig.h"
+#include <stdio.h>
+/*
+//f1
+*/
+ivConfig::ivConfig() {
+	//
+	printf("sensor test1\n");
+
+}
+/*
+//f2
+*/
+ivConfig::~ivConfig() {
+
+}
+

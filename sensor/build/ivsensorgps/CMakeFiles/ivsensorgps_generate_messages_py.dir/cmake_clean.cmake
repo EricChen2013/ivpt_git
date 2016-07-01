@@ -1,0 +1,10 @@
+FILE(REMOVE_RECURSE
+  "CMakeFiles/ivsensorgps_generate_messages_py"
+  "/home/raul/ivpt/sensor/devel/lib/python2.7/dist-packages/ivsensorgps/msg/_gpsmsg.py"
+  "/home/raul/ivpt/sensor/devel/lib/python2.7/dist-packages/ivsensorgps/msg/__init__.py"
+)
+
+# Per-language clean rules from dependency scanning.
+FOREACH(lang)
+  INCLUDE(CMakeFiles/ivsensorgps_generate_messages_py.dir/cmake_clean_${lang}.cmake OPTIONAL)
+ENDFOREACH(lang)

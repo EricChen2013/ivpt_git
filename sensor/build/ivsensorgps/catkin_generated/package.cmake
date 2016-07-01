@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "ivsensorgps")
+set(ivsensorgps_MAINTAINER "wangxiao <wangxiao@idriverplus.com>")
+set(ivsensorgps_DEPRECATED "")
+set(ivsensorgps_VERSION "1.0.0")
+set(ivsensorgps_BUILD_DEPENDS "roscpp" "rospy" "std_msgs" "message_generation" "serial")
+set(ivsensorgps_RUN_DEPENDS "roscpp" "rospy" "std_msgs" "message_runtime" "serial")
+set(ivsensorgps_BUILDTOOL_DEPENDS "catkin")

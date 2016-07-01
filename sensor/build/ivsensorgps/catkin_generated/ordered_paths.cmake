@@ -1,0 +1,1 @@
+set(ORDERED_PATHS "/opt/serial/lib;/opt/ros/jade/lib")
