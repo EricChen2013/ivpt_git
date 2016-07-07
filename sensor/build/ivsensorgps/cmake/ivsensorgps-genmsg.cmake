@@ -2,7 +2,7 @@
 
 message(STATUS "ivsensorgps: 1 messages, 0 services")
 
-set(MSG_I_FLAGS "-Iivsensorgps:/home/raul/ivpt/sensor/src/ivsensorgps/msg;-Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg")
+set(MSG_I_FLAGS "-Iivsensorgps:/home/raul/ivpt-git/sensor/src/ivsensorgps/msg;-Istd_msgs:/opt/ros/jade/share/std_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -16,9 +16,9 @@ add_custom_target(ivsensorgps_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
+get_filename_component(_filename "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
 add_custom_target(_ivsensorgps_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "ivsensorgps" "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "ivsensorgps" "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg" ""
 )
 
 #
@@ -28,7 +28,7 @@ add_custom_target(_ivsensorgps_generate_messages_check_deps_${_filename}
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(ivsensorgps
-  "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg"
+  "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/ivsensorgps
@@ -48,7 +48,7 @@ add_custom_target(ivsensorgps_generate_messages_cpp
 add_dependencies(ivsensorgps_generate_messages ivsensorgps_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
+get_filename_component(_filename "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
 add_dependencies(ivsensorgps_generate_messages_cpp _ivsensorgps_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -61,7 +61,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS ivsensorgps_generate_messages_cpp)
 ### Section generating for lang: geneus
 ### Generating Messages
 _generate_msg_eus(ivsensorgps
-  "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg"
+  "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/ivsensorgps
@@ -81,7 +81,7 @@ add_custom_target(ivsensorgps_generate_messages_eus
 add_dependencies(ivsensorgps_generate_messages ivsensorgps_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
+get_filename_component(_filename "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
 add_dependencies(ivsensorgps_generate_messages_eus _ivsensorgps_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -94,7 +94,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS ivsensorgps_generate_messages_eus)
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(ivsensorgps
-  "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg"
+  "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/ivsensorgps
@@ -114,7 +114,7 @@ add_custom_target(ivsensorgps_generate_messages_lisp
 add_dependencies(ivsensorgps_generate_messages ivsensorgps_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
+get_filename_component(_filename "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
 add_dependencies(ivsensorgps_generate_messages_lisp _ivsensorgps_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -127,7 +127,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS ivsensorgps_generate_messages_lisp)
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(ivsensorgps
-  "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg"
+  "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/ivsensorgps
@@ -147,7 +147,7 @@ add_custom_target(ivsensorgps_generate_messages_py
 add_dependencies(ivsensorgps_generate_messages ivsensorgps_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/raul/ivpt/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
+get_filename_component(_filename "/home/raul/ivpt-git/sensor/src/ivsensorgps/msg/gpsmsg.msg" NAME_WE)
 add_dependencies(ivsensorgps_generate_messages_py _ivsensorgps_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

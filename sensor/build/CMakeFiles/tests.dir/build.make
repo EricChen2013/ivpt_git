@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/raul/ivpt/sensor/src
+CMAKE_SOURCE_DIR = /home/raul/ivpt-git/sensor/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/raul/ivpt/sensor/build
+CMAKE_BINARY_DIR = /home/raul/ivpt-git/sensor/build
 
 # Utility rule file for tests.
 
@@ -60,6 +60,6 @@ CMakeFiles/tests.dir/clean:
 .PHONY : CMakeFiles/tests.dir/clean
 
 CMakeFiles/tests.dir/depend:
-	cd /home/raul/ivpt/sensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raul/ivpt/sensor/src /home/raul/ivpt/sensor/src /home/raul/ivpt/sensor/build /home/raul/ivpt/sensor/build /home/raul/ivpt/sensor/build/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/raul/ivpt-git/sensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raul/ivpt-git/sensor/src /home/raul/ivpt-git/sensor/src /home/raul/ivpt-git/sensor/build /home/raul/ivpt-git/sensor/build /home/raul/ivpt-git/sensor/build/CMakeFiles/tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tests.dir/depend
 

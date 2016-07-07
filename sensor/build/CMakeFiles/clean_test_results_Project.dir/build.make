@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/raul/ivpt/sensor/src
+CMAKE_SOURCE_DIR = /home/raul/ivpt-git/sensor/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/raul/ivpt/sensor/build
+CMAKE_BINARY_DIR = /home/raul/ivpt-git/sensor/build
 
 # Utility rule file for clean_test_results_Project.
 
@@ -46,7 +46,7 @@ CMAKE_BINARY_DIR = /home/raul/ivpt/sensor/build
 include CMakeFiles/clean_test_results_Project.dir/progress.make
 
 CMakeFiles/clean_test_results_Project:
-	/usr/bin/python /opt/ros/jade/share/catkin/cmake/test/remove_test_results.py /home/raul/ivpt/sensor/build/test_results/Project
+	/usr/bin/python /opt/ros/jade/share/catkin/cmake/test/remove_test_results.py /home/raul/ivpt-git/sensor/build/test_results/Project
 
 clean_test_results_Project: CMakeFiles/clean_test_results_Project
 clean_test_results_Project: CMakeFiles/clean_test_results_Project.dir/build.make
@@ -61,6 +61,6 @@ CMakeFiles/clean_test_results_Project.dir/clean:
 .PHONY : CMakeFiles/clean_test_results_Project.dir/clean
 
 CMakeFiles/clean_test_results_Project.dir/depend:
-	cd /home/raul/ivpt/sensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raul/ivpt/sensor/src /home/raul/ivpt/sensor/src /home/raul/ivpt/sensor/build /home/raul/ivpt/sensor/build /home/raul/ivpt/sensor/build/CMakeFiles/clean_test_results_Project.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/raul/ivpt-git/sensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raul/ivpt-git/sensor/src /home/raul/ivpt-git/sensor/src /home/raul/ivpt-git/sensor/build /home/raul/ivpt-git/sensor/build /home/raul/ivpt-git/sensor/build/CMakeFiles/clean_test_results_Project.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clean_test_results_Project.dir/depend
 

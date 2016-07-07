@@ -1,2 +1,2 @@
 ivsensorgps
--DCATKIN_DEVEL_PREFIX=/home/raul/ivpt/sensor/devel -DCMAKE_INSTALL_PREFIX=/home/raul/ivpt/sensor/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/raul/ivpt-git/sensor/devel -DCMAKE_INSTALL_PREFIX=/home/raul/ivpt-git/sensor/install -G Unix Makefiles

@@ -1,6 +1,6 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/ivsensorgps_generate_messages_lisp"
-  "/home/raul/ivpt/sensor/devel/share/common-lisp/ros/ivsensorgps/msg/gpsmsg.lisp"
+  "/home/raul/ivpt-git/sensor/devel/share/common-lisp/ros/ivsensorgps/msg/gpsmsg.lisp"
 )
 
 # Per-language clean rules from dependency scanning.

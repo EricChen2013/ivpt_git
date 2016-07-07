@@ -1,8 +1,8 @@
-prefix=/home/raul/ivpt/sensor/devel
+prefix=/home/raul/ivpt-git/sensor/devel
 
 Name: ivsensorgps
 Description: Description of ivsensorgps
 Version: 1.0.0
-Cflags: -I/home/raul/ivpt/sensor/devel/include
-Libs: -L/home/raul/ivpt/sensor/devel/lib 
+Cflags: -I/home/raul/ivpt-git/sensor/devel/include
+Libs: -L/home/raul/ivpt-git/sensor/devel/lib 
 Requires: roscpp rospy std_msgs message_runtime serial

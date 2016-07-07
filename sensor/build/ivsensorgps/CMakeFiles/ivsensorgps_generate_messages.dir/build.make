@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/raul/ivpt/sensor/src
+CMAKE_SOURCE_DIR = /home/raul/ivpt-git/sensor/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/raul/ivpt/sensor/build
+CMAKE_BINARY_DIR = /home/raul/ivpt-git/sensor/build
 
 # Utility rule file for ivsensorgps_generate_messages.
 
@@ -56,10 +56,10 @@ ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/build: ivsensorgps_gene
 .PHONY : ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/build
 
 ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/clean:
-	cd /home/raul/ivpt/sensor/build/ivsensorgps && $(CMAKE_COMMAND) -P CMakeFiles/ivsensorgps_generate_messages.dir/cmake_clean.cmake
+	cd /home/raul/ivpt-git/sensor/build/ivsensorgps && $(CMAKE_COMMAND) -P CMakeFiles/ivsensorgps_generate_messages.dir/cmake_clean.cmake
 .PHONY : ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/clean
 
 ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/depend:
-	cd /home/raul/ivpt/sensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raul/ivpt/sensor/src /home/raul/ivpt/sensor/src/ivsensorgps /home/raul/ivpt/sensor/build /home/raul/ivpt/sensor/build/ivsensorgps /home/raul/ivpt/sensor/build/ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/raul/ivpt-git/sensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/raul/ivpt-git/sensor/src /home/raul/ivpt-git/sensor/src/ivsensorgps /home/raul/ivpt-git/sensor/build /home/raul/ivpt-git/sensor/build/ivsensorgps /home/raul/ivpt-git/sensor/build/ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : ivsensorgps/CMakeFiles/ivsensorgps_generate_messages.dir/depend
 

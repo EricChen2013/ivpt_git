@@ -9,7 +9,6 @@
 // Custom message includes. Auto-generated from msg/ directory.
 #include "ivsensorgps/gpsmsg.h"
 using namespace std;
-
 typedef struct sGpsPoint
 {
   double lon;
@@ -42,7 +41,7 @@ class gpsparse
   void parseGprmc();
   void parseGphpr();
   void publishMsg();
-
+  void parseGpybm();
   private:
   //! The timer variable used to go to callback function at specified rate.
   ros::Timer timer_;
@@ -57,7 +56,7 @@ class gpsparse
   unsigned char TempDataArray[350];
   int ReceiverCurrentByteCount;      
   int sendCount;
-  std::string gpsDeviceName;
+  int gpsDeviceName; //0-sinan 1-lianshi 2-qianxun
 };
 
 #endif // NODE_EXAMPLE_TALKER_H

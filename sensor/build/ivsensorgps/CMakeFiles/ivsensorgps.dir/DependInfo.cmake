@@ -4,8 +4,8 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/raul/ivpt/sensor/src/ivsensorgps/src/gpsparse.cpp" "/home/raul/ivpt/sensor/build/ivsensorgps/CMakeFiles/ivsensorgps.dir/src/gpsparse.cpp.o"
-  "/home/raul/ivpt/sensor/src/ivsensorgps/src/ivsensorgps.cpp" "/home/raul/ivpt/sensor/build/ivsensorgps/CMakeFiles/ivsensorgps.dir/src/ivsensorgps.cpp.o"
+  "/home/raul/ivpt-git/sensor/src/ivsensorgps/src/gpsparse.cpp" "/home/raul/ivpt-git/sensor/build/ivsensorgps/CMakeFiles/ivsensorgps.dir/src/gpsparse.cpp.o"
+  "/home/raul/ivpt-git/sensor/src/ivsensorgps/src/ivsensorgps.cpp" "/home/raul/ivpt-git/sensor/build/ivsensorgps/CMakeFiles/ivsensorgps.dir/src/ivsensorgps.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -22,7 +22,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/raul/ivpt/sensor/devel/include"
+  "/home/raul/ivpt-git/sensor/devel/include"
   "/opt/serial/include"
   "/opt/ros/jade/include"
   )

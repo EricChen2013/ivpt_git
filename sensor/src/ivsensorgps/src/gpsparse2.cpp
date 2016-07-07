@@ -1,24 +1,25 @@
 #include "gpsparse.h" 
 
+volatile int recv_gps_flag = 0;
  gpsparse::gpsparse(ros::NodeHandle nh) {
    //data initialize 
-   memset(&rp,0,sizeof(rp));
-   gpsDeviceName = 0;
+   recv_gps_flag = 0;
+	 memset(&rp,0,sizeof(rp));
+   gpsDeviceName = "qianxun";
    ReceiverCurrentByteCount = 0;
    sendCount = 0;
    //Create a publisher and name the topic.
-   pub_ = nh.advertise<ivsensorgps::gpsmsg>("ivsensorgps", 1000);
-   // Create timer.
-   int rate = 10;
-   timer_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback, this);
+   pub_ = nh.advertise<read_gps_from_uart::GPS>("ivsensorgps", 1000); 
+   // Create timer.  
+   int rate = 1; 
+   timer_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback, this); 
    //timer2_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback2, this);
-   //serial port initialize and open
-   /*
-   try
-   {
-        ser.setPort("/dev/ttyACM0");
-        ser.setBaudrate(9600);
-        serial::Timeout to = serial::Timeout::simpleTimeout(1000);
+   //serial port initialize and open 
+   try 
+   { 
+	    ser.setPort("/dev/ttyUSB0"); 
+		ser.setBaudrate(115200);
+        serial::Timeout to = serial::Timeout::simpleTimeout(100);
         ser.setTimeout(to);
         ser.open();
    }
@@ -34,7 +35,6 @@
    {
        ROS_ERROR_STREAM("Serial Port failed");
    }
-   */
  }
  //
  gpsparse::~gpsparse()
@@ -44,107 +44,103 @@
  //
  void gpsparse::timerCallback(const ros::TimerEvent& event)
  {
-         //naviColKernel();
-   publishMsg();   
+   naviColKernel();
+   if(recv_gps_flag == 1){
+		publishMsg();   
+   }
  }
  //
  void gpsparse::naviColKernel()
 {
    std::string recvstr;
-   recvstr = ser.read(ser.available());
-   std::cout<<recvstr<<std::endl;
-   //here read serialport data
-   const int bufsize = 1000;
-   unsigned char revbuf[bufsize];
-   memset(&revbuf,0,sizeof(revbuf));
-   int len = ser.read(revbuf, bufsize); 
-   if(len > 0 && len < bufsize)
-   {
-     receiveData(revbuf,len);
+   if(ser.available() > 0){
+//	   recvstr = ser.read(ser.available());
+//		std::cout<<recvstr<<std::endl;
+		const int bufsize = 1000;
+		unsigned char revbuf[bufsize];
+		memset(&revbuf,0,sizeof(revbuf));
+		int len = ser.read(revbuf, bufsize);
+		printf("read uart len = %d\n",len);
+		if(len > 0 && len < bufsize)
+		{
+			process_gps_data(revbuf,len);
+			recv_gps_flag = 1;
+		}
+	
    }
-} 
-//
- void gpsparse::publishMsg()
-{
-   ivsensorgps::gpsmsg msg;
-   msg.lon = rp.lon;
-   msg.lat = rp.lat;
-   msg.mode = rp.mode;
-   msg.heading = rp.heading;
-   msg.velocity = rp.velocity;
-   msg.status = rp.status;
-   msg.satenum = rp.satenum;  
-   pub_.publish(msg);
-}
-//
-void gpsparse::receiveData(unsigned char* str, int len)
-{
-  for (int i = 0; i < len; ++i)
-  {
-           TempDataArray[ReceiverCurrentByteCount] = str[i];
-           ReceiverCurrentByteCount++;
-           if (ReceiverCurrentByteCount > 2)
-          {
+ }
+ //
 
-             if (TempDataArray[ReceiverCurrentByteCount - 2] == 0X0D && TempDataArray[ReceiverCurrentByteCount - 1] == 0X0A )  
-             {
-                    if (ReceiverCurrentByteCount > 6)
-                    {
-                        if (2 == gpsDeviceName)
-                        {
-						  if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'Y')
-						  {
+int gpsparse::process_gps_data(unsigned char* str, int len){
+	int finish = 0;
+	int fifo_n = 0;
+	for (int i = 0; i < len; ++i)
+	{
+		TempDataArray[ReceiverCurrentByteCount] = str[i];
+		ReceiverCurrentByteCount++;
+		if (ReceiverCurrentByteCount > 2)
+		{
+			if (TempDataArray[ReceiverCurrentByteCount - 2] == 0X0D && TempDataArray[ReceiverCurrentByteCount - 1] == 0X0A )  
+			{
+				printf("detect 0x0d,0x0a\n");
+				if (ReceiverCurrentByteCount > 6)
+				{
+                    if (!gpsDeviceName.compare("qianxun")){
+						if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'Y')
+						{
 							printf("detect $GPY\n");
 							memset(&rp,0,sizeof(rp));
-							parseGpybm();
+							ParseGpybm();
 							printf("lon = %.10f,lat = %.10f,azimuth = %.10f,speed = %.10f,rtkstatus = %d,statunum = %d\n",
-									rp.lon,rp.lat,rp.heading,rp.velocity,rp.status,rp.satenum);
-						  }
+									rp.lon,rp.lat,rp.azimuth,rp.speed,rp.rtkstatus,rp.statenum);
+						}
+					}
+					
+                    if (!gpsDeviceName.compare("sinan"))
+                    {
+                        if (TempDataArray[0] == '#' && TempDataArray[1] == 'B' && TempDataArray[2] == 'E'&& TempDataArray[3] == 'S')
+                        {
+                            parseBestPosa();
+                            sendCount = (sendCount + 1) % 3;
                         }
-                        else if (0 == gpsDeviceName)
-                         {
-                                if (TempDataArray[0] == '#' && TempDataArray[1] == 'B' && TempDataArray[2] == 'E'&& TempDataArray[3] == 'S')
-                                {
-                                   parseBestPosa();
-                                   sendCount = (sendCount + 1) % 3;
-                                }
-                                else if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'T')
-                                {
-                                   parseGptra();
-                                   sendCount = (sendCount + 1) % 3;
-                                }
-                                else if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'V')
-                                {
-                                  parseGpvtg();
-                                  sendCount = (sendCount + 1) % 3;
-                                }
-                         } 
-                         else if(1 == gpsDeviceName)
-                         {
-                                if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'G')
-                                {
-                                  parseGpgga();
-                                  sendCount = (sendCount + 1) % 3;
-                                }
-                                else if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'R')
-                                {
-                                  parseGprmc();
-                                  sendCount = (sendCount + 1) % 3;
-                                }
-                                else if (TempDataArray[0] == '$' && TempDataArray[1] == 'P' && TempDataArray[2] == 'S'&& TempDataArray[3] == 'A')
-                                {
-                                  parseGphpr();
-                                  sendCount = (sendCount + 1) % 3;
-                                }
-                          }      
-                            
+                        else if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'T')
+                        {
+                            parseGptra();
+                            sendCount = (sendCount + 1) % 3;
+                        }
+                        else if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'V')
+                        {
+                            parseGpvtg();
+                            sendCount = (sendCount + 1) % 3;
+                        }
                     }
-                 ReceiverCurrentByteCount = 0; //¿ÕÐÐ¿ÕžñÒ»¶šÇåÁã
-              }
-         }   
-     }
+					
+                    else if(!gpsDeviceName.compare("lianshi"))
+                    {
+                        if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'G')
+                        {
+                            parseGpgga();
+                            sendCount = (sendCount + 1) % 3;
+                        }
+                        else if (TempDataArray[0] == '$' && TempDataArray[1] == 'G' && TempDataArray[2] == 'P'&& TempDataArray[3] == 'R')
+                        {
+                            parseGprmc();
+                            sendCount = (sendCount + 1) % 3;
+                        }
+                        else if (TempDataArray[0] == '$' && TempDataArray[1] == 'P' && TempDataArray[2] == 'S'&& TempDataArray[3] == 'A')
+                        {
+                            parseGphpr();
+                            sendCount = (sendCount + 1) % 3;
+                        }
+                    }      
+				}
+				ReceiverCurrentByteCount = 0;
+			}
+		}
+	}
 }
-void gpsparse::parseGpybm()
+
+void gpsparse::ParseGpybm()
 {
 	printf("ParseGpybm function\n");
 	int strnum = 0;
@@ -178,13 +174,13 @@ void gpsparse::parseGpybm()
 					stream.str(""); 
 					temp=""; break;
 				case 7:
-					stream >> rp.heading;
+					stream >> rp.azimuth;
 					stream.str(""); temp=""; break;
 				case 12:
-					stream >> rp.velocity;
+					stream >> rp.speed;
 					stream.str(""); temp=""; break;
 				case 17:
-					stream >> rp.status;
+					stream >> rp.rtkstatus;
 					stream.str(""); temp=""; break;
 				case 19:
 					stream >> rp.satenum;
@@ -199,7 +195,19 @@ void gpsparse::parseGpybm()
 	}
 }
 
-//
+ void gpsparse::publishMsg()
+{
+	read_gps_from_uart::GPS msg;
+   msg.lon = rp.lon;
+   msg.lat = rp.lat;
+   msg.azimuth = rp.azimuth;
+   msg.speed = rp.speed;
+   msg.rtkstatus = rp.rtkstatus;
+   msg.statenum = rp.statenum;
+  
+   pub_.publish(msg);
+}
+
 void gpsparse::parseBestPosa()
 {
  int strnum = 0;
@@ -414,7 +422,6 @@ void gpsparse::parseGpgga()
   } 
  }
 }
-
 
 
 

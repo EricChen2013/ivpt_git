@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/raul/ivpt/sensor/devel/include/ivsensorgps/gpsmsg.h
+/home/raul/ivpt-git/sensor/devel/include/ivsensorgps/gpsmsg.h
 string
 -
 vector
@@ -22,19 +22,19 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 
-/home/raul/ivpt/sensor/src/ivsensorgps/src/gpsparse.cpp
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/gpsparse.cpp
 gpsparse.h
-/home/raul/ivpt/sensor/src/ivsensorgps/src/gpsparse.h
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/gpsparse.h
 
-/home/raul/ivpt/sensor/src/ivsensorgps/src/gpsparse.h
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/gpsparse.h
 ros/ros.h
-/home/raul/ivpt/sensor/src/ivsensorgps/src/ros/ros.h
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/ros/ros.h
 ros/time.h
-/home/raul/ivpt/sensor/src/ivsensorgps/src/ros/time.h
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/ros/time.h
 serial/serial.h
-/home/raul/ivpt/sensor/src/ivsensorgps/src/serial/serial.h
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/serial/serial.h
 ivsensorgps/gpsmsg.h
-/home/raul/ivpt/sensor/src/ivsensorgps/src/ivsensorgps/gpsmsg.h
+/home/raul/ivpt-git/sensor/src/ivsensorgps/src/ivsensorgps/gpsmsg.h
 
 /opt/ros/jade/include/XmlRpcDecl.h
 ros/macros.h

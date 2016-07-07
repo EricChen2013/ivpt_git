@@ -16,7 +16,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/raul/ivpt/sensor/devel/include"
+  "/home/raul/ivpt-git/sensor/devel/include"
   "/opt/serial/include"
   "/opt/ros/jade/include"
   )
