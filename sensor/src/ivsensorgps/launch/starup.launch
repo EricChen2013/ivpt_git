@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<launch>
+   <node name="ivsensorgps" pkg="ivsensorgps" type="ivsensorgps"/>
+   <param name="gpsdevice" value="0" type="int"/>
+   <param name="gpsserialport" value="/dev/ttyACM0" type="string"/>
+   <param name="gpsbaudrate" value="115200" type="int"/>
+</launch>

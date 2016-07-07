@@ -57,6 +57,8 @@ class gpsparse
   int ReceiverCurrentByteCount;      
   int sendCount;
   int gpsDeviceName; //0-sinan 1-lianshi 2-qianxun
+  int baudrate;
+  string serialport;
 };
 
 #endif // NODE_EXAMPLE_TALKER_H

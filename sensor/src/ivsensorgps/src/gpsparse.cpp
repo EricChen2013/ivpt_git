@@ -1,40 +1,52 @@
 #include "gpsparse.h" 
 
  gpsparse::gpsparse(ros::NodeHandle nh) {
+ 
+   //import paramters from lauch file
+   gpsDeviceName = 0; 
+   baudrate = 115200;
+   serialport = "dev/ttyUSB0";
+   nh.param("gpsbaudrate",baudrate,baudrate);
+   nh.param("gpsserialport",serialport,serialport);
+   nh.param("gpsdevice",gpsDeviceName,gpsDeviceName);
    //data initialize 
-   memset(&rp,0,sizeof(rp));
-   gpsDeviceName = 0;
+   memset(&rp,0,sizeof(rp));  sendCount = 0;
    ReceiverCurrentByteCount = 0;
-   sendCount = 0;
    //Create a publisher and name the topic.
    pub_ = nh.advertise<ivsensorgps::gpsmsg>("ivsensorgps", 1000);
-   // Create timer.
-   int rate = 10;
-   timer_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback, this);
-   //timer2_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback2, this);
-   //serial port initialize and open
-   /*
+     if(0){
+     int rate = 10;
+     timer_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback, this);
+   }
+     
    try
    {
-        ser.setPort("/dev/ttyACM0");
-        ser.setBaudrate(9600);
+        ROS_INFO_STREAM("Serial information:");    
+        ser.setPort(serialport);
+        ser.setBaudrate(baudrate);
         serial::Timeout to = serial::Timeout::simpleTimeout(1000);
         ser.setTimeout(to);
         ser.open();
    }
    catch (serial::IOException& e)
    {
-        ROS_ERROR_STREAM("Unable to open port ");
+       ROS_ERROR_STREAM("Unable to open port ");
+       ROS_ERROR_STREAM(baudrate);
+       ROS_ERROR_STREAM(serialport);
+       ROS_ERROR_STREAM(gpsDeviceName);
    }
    if(ser.isOpen())
    {
+    // Create timer.
+       int rate = 10;
+       timer_ = nh.createTimer(ros::Duration(1 / rate), &gpsparse::timerCallback, this);
        ROS_INFO_STREAM("Serial Port initialized");
    }
    else
    {
        ROS_ERROR_STREAM("Serial Port failed");
    }
-   */
+   
  }
  //
  gpsparse::~gpsparse()
@@ -44,7 +56,7 @@
  //
  void gpsparse::timerCallback(const ros::TimerEvent& event)
  {
-         //naviColKernel();
+   //naviColKernel();
    publishMsg();   
  }
  //
@@ -67,8 +79,8 @@
  void gpsparse::publishMsg()
 {
    ivsensorgps::gpsmsg msg;
-   msg.lon = rp.lon;
-   msg.lat = rp.lat;
+   msg.lon = baudrate;
+   msg.lat = gpsDeviceName;
    msg.mode = rp.mode;
    msg.heading = rp.heading;
    msg.velocity = rp.velocity;
