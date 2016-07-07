@@ -1,0 +1,12 @@
+请先进入root权限，以后调试代码也需要在root权限才能有效
+依次按照如下步骤操作：
+su root
+输入root密码
+将vim-config.tar.gz放在任意目录下
+tar zxvf vim_config.tar.gz
+cd vim-yang-config
+./setup.sh
+等着提示安装成功即可。
+vi打开一个cpp文件，在命令行模式，：Tlist，出现本文件函数和全局变量列表，双击某函数可切换;
+：NERDTree，出现文件列表，双击某文件，可实现文件切换。
+在某一个目录的根目录下，比如catkin_ws/目录下，终端输入ctags -R，在打开的cpp文件，Ctrl + 某个变量，会自动跳转到此变量的定义位置。
